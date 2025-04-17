@@ -5,37 +5,38 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Другие файлы">
+      <UniqueIdentifier>{57f4f7e6-5c5e-4870-a2eb-ce1128c7b777}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Исходные файлы\SRC">
+      <UniqueIdentifier>{92faacde-fbab-4247-84f3-db91580d82ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SRC\.DPAR.cpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
-    <ClCompile Include="SRC\JSON.cpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include=".TEST.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SRC\.DPAR.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
+    <ClCompile Include="SRC\.DPAR.cpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\JSON.cpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\.file_manager.cpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Другие файлы</Filter>
     </None>
     <None Include="README.MD">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Другие файлы</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SRC\.DPAR.hpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

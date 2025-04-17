@@ -11,6 +11,10 @@
 
 
 class DPAR {
+private:
+
+    std::string File_manager();
+
 public:
     std::string Fileread(std::string full_filepath = "-");
 
@@ -25,12 +29,13 @@ public:
 
     std::string path = "-";
     DPAR::TYPE requesttype = DPAR::TYPE::NONE;
+    bool argument_autorun = true;
     int pause = 0; //variable for destructor only
 
     std::string file_name = "-";
     std::string extension = "-";
 
-    DPAR(std::string full_filepath, DPAR::TYPE type = DPAR::TYPE::READ);
+    DPAR(std::string full_filepath, DPAR::TYPE type = DPAR::TYPE::READ, bool autorun = true);
 
     ~DPAR();
 

@@ -42,12 +42,12 @@ std::string DPAR::Fileread(std::string full_filepath) {
 	}
 	else if (std::filesystem::exists(path)) { //constructor argument
 
-		std::cout << "(private)[DPAR::Fileread] EXISTS(path) : " << "\"" << path << "\"" << std::endl;
+		std::cout << "(private)[DPAR::Fileread] EXISTS(path) : " << "\"" << full_filepath << "\"" << std::endl;
 
 		std::ifstream readfile(path, std::ios::in);
 		if (!readfile.is_open()) {
 
-			std::cerr << "(private)[DPAR::Fileread] File open ERROR! : " << "\"" << path << "\"" << std::endl;
+			std::cerr << "(private)[DPAR::Fileread] File open ERROR! : " << "\"" << full_filepath << "\"" << std::endl;
 			return std::string();
 
 		}
@@ -75,8 +75,7 @@ std::string DPAR::Fileread(std::string full_filepath) {
 
 //----------------------------------
 
-DPAR::DPAR(std::string full_filepath, DPAR::TYPE type) : path(full_filepath), requesttype(type) { 
-	//pause(endpause) - используется в деструкторе
+DPAR::DPAR(std::string full_filepath, DPAR::TYPE type, bool autorun) : path(full_filepath), requesttype(type), argument_autorun(autorun) { 
 
 	/*----------
 	// D P A R
@@ -97,13 +96,21 @@ DPAR::DPAR(std::string full_filepath, DPAR::TYPE type) : path(full_filepath), re
 	)" << std::endl << std::endl << std::endl;
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(800)); //0.8 second pause...
+	
+
+
+
+
+	//step 1 : argument requesttype check
+	//------------------
+
+
 	/*
 	DPAR::TYPE requesttype = DPAR::TYPE::NONE;
 
 	initialized in DPAR.hpp
 	*/
 
-	//------------------
 
 	if (type == DPAR::TYPE::READ || type == DPAR::TYPE::PARSE) {
 
@@ -117,6 +124,7 @@ DPAR::DPAR(std::string full_filepath, DPAR::TYPE type) : path(full_filepath), re
 
 	}
 
+	//step 2 : argument full_filepath check(file checking)
 	//------------------
 
 	if (std::filesystem::exists(full_filepath)) {
@@ -132,6 +140,7 @@ DPAR::DPAR(std::string full_filepath, DPAR::TYPE type) : path(full_filepath), re
 
 	}
 
+	//step 3.1 : extension detecting
 	//------------------
 
 	/*
@@ -142,62 +151,87 @@ DPAR::DPAR(std::string full_filepath, DPAR::TYPE type) : path(full_filepath), re
 	initialized in DPAR.hpp
 	*/
 
-	//------------------
-
 	int cycle = 0;
-	cycle = path.length();
+	cycle = full_filepath.length();
 
-	while (cycle >= 0) { //cycle 1/2
+	while (cycle >= 0) {
 
 		std::cout << "extension searching...( " << cycle << " : " << "0 )" << std::endl;
 
-		if (path[cycle] == '.') {
+		if (full_filepath[cycle] == '.') {
 			cycle++;
-			extension = path.substr(cycle, path.length());
+			extension = full_filepath.substr(cycle, full_filepath.length());
 			std::cout << "(public)[DPAR::DPAR] EXTENSION EXISTS : " << "\"" << extension << "\"" << std::endl;
 			break;
 
 		}
-		else if (cycle == 0 && path[cycle] == '.') {
+		else if (cycle == 0 && full_filepath[cycle] == '.') {
 
 			std::cerr << "(public)[DPAR::DPAR] EXTENSION NOT EXISTS : " << "\"" << full_filepath << "\"" << std::endl;
 			return;
 		}
 		
-		if (cycle != 0)
-		cycle--;
+		if (cycle != 0) {
+			cycle--;
+		}
 	}
 
+	//step 3.2 : file name detecting
 	//------------------
 
-	cycle = path.length();
+	cycle = full_filepath.length();
 
-	while (cycle >= 0) { //cycle 2/2
+	while (cycle >= 0) {
 
 		std::cout << "File name searching...( " << cycle << " : " << "0 )" << std::endl;
 
-		if (path[cycle] == '\\' || path[cycle] == '/') {
+		if (full_filepath[cycle] == '\\' || full_filepath[cycle] == '/') {
 			cycle++;
-			file_name = path.substr(cycle, path.length());
+			file_name = full_filepath.substr(cycle, full_filepath.length());
 			std::cout << "(public)[DPAR::DPAR] FILE NAME EXISTS : " << "\"" << file_name << "\"" << std::endl;
 			break;
 
 		}
-		else if (cycle == 0 && path[cycle] == '.') {
+		else if (cycle == 0 && full_filepath[cycle] == '.') {
 
 			std::cerr << "(public)[DPAR::DPAR] FILE NAME NOT EXISTS : " << "\"" << full_filepath << "\"" << std::endl;
 			return;
 		}
 
-		if (cycle != 0)
+		if (cycle != 0) {
 			cycle--;
-
+		}
 	}
 
 	cycle = 0;
+
+	//step 4 : autorun
 	//------------------
 
+	/*
+	std::string extension = "";
 
+	from step 3.1
+	initialized in DPAR.hpp
+	*/
+
+
+	if (autorun) {
+
+		if (type == DPAR::TYPE::READ) {
+
+
+
+		}
+		if (type == DPAR::TYPE::PARSE) {
+
+
+
+		}
+
+	}
+
+	//------------------
 
 }
 
