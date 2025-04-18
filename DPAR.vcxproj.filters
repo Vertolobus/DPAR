@@ -13,17 +13,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".TEST.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="SRC\.DPAR.cpp">
       <Filter>Исходные файлы\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="SRC\JSON.cpp">
+    <ClCompile Include="SRC\.language_manager.cpp">
       <Filter>Исходные файлы\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="SRC\.file_manager.cpp">
-      <Filter>Исходные файлы\SRC</Filter>
+    <ClCompile Include=".TEST.cpp">
+      <Filter>Другие файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
