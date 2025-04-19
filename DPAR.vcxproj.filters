@@ -13,10 +13,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SRC\.DPAR.cpp">
+    <ClCompile Include="SRC\DPAR.cpp">
       <Filter>Исходные файлы\SRC</Filter>
     </ClCompile>
-    <ClCompile Include="SRC\.language_manager.cpp">
+    <ClCompile Include="SRC\language_manager.cpp">
       <Filter>Исходные файлы\SRC</Filter>
     </ClCompile>
     <ClCompile Include=".TEST.cpp">
@@ -32,7 +32,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SRC\.DPAR.hpp">
+    <ClInclude Include="SRC\DPAR.hpp">
       <Filter>Исходные файлы\SRC</Filter>
     </ClInclude>
   </ItemGroup>

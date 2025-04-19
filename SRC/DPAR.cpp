@@ -7,28 +7,57 @@
 #include <thread>
 #include <string>
 
-#include ".DPAR.hpp"
+#include "DPAR.hpp"
 //----------------------------------
 bool DPAR::file_validation(std::string filepath) {
-	if (std::filesystem::is_directory(filepath)) {
-		return false;
-	}
-	else if (!std::filesystem::exists(filepath)) {
-		return false;
+	if (filepath == "-") {
+		if (std::filesystem::is_directory(path)) {
+			return false;
+		}
+		else if (!std::filesystem::exists(path)) {
+			return false;
+		}
+		else {
+
+			return true;
+
+		}
 	}
 	else {
 
-		return true;
+		if (std::filesystem::is_directory(filepath)) {
+			return false;
+		}
+		else if (!std::filesystem::exists(filepath)) {
+			return false;
+		}
+		else {
+
+			return true;
+
+		}
 
 	}
 }
 //----------------------------------
 bool DPAR::folder_validation(std::string folderpath) {
-	if (!std::filesystem::is_directory(folderpath)) {
-		return false;
+	if (folderpath == "-") {
+		if (!std::filesystem::is_directory(path)) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	else {
-		return true;
+
+		if (!std::filesystem::is_directory(folderpath)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+
 	}
 }
 //----------------------------------

@@ -7,10 +7,10 @@
 #include <thread>
 #include <string>
 
-#include ".DPAR.hpp"
+#include "DPAR.hpp"
 
-std::string DPAR::Fileread(std::string filepath) {
-	
+std::string DPAR::Fileread() {
+
 	if (filepath != "-" && !folder_validation(filepath)) { //func argument
 
 		//------------------
@@ -72,7 +72,7 @@ std::string DPAR::Fileread(std::string filepath) {
 
 }
 
-void DPAR::Filewrite(std::string raw_text, std::string filepath) {
+void DPAR::Filewrite(std::string raw_text) {
 
 	if (filepath != "-" && !folder_validation(filepath)) { //func argument
 
