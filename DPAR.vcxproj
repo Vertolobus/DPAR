@@ -20,15 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include=".TEST.cpp" />
-    <ClCompile Include="SRC\.DPAR.cpp" />
-    <ClCompile Include="SRC\.language_manager.cpp" />
+    <ClCompile Include="SRC\DPAR.cpp" />
+    <ClCompile Include="SRC\language_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SRC\.DPAR.hpp" />
+    <ClInclude Include="SRC\DPAR.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

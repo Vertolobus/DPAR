@@ -35,36 +35,33 @@
 <b> Функции:</b>
 
 
-* string Fileread(string filepath = "-");
+* string DPAR::Fileread();
 
   <b>Функция  для чтения содержимого файла</b>
-  
-  Аргументы:
-	
-  string filepath - Путь до файла 
 
   <hr>
 
-* void Filewrite(string raw_text,  string filepath = "-");
+* void DPAR::Filewrite(string raw_text);
 
   <b>Функция для записи данных в файл</b>
   
   Аргументы:
   string raw_text - Текст который будет записан в файл
-	
-  string filepath - Путь до файла 
+ 
 
   <hr>
 
-* //list<string> Fileanalysis(string filepath = "-"); //future func
+* //list<string> DPAR::Fileanalysis(string filepath = "-"); //future func
 
   <b>Будущая функция</b>
 
   <hr>
 
-* bool file_validation(string filepath);
+* bool DPAR::file_validation(string filepath);
 
-  <b>Функция для проверки существует ли файл</b>
+  <b>Функция для проверки существует ли файл 
+
+  ЕСТЬ ВОЗМОЖНОСТЬ ЗАПУСКА КАК С ПЕРЕМЕННОЙ КЛАССА ТАК И С АРГУМЕНТОМ</b>
   
   Аргументы:
 	
@@ -72,9 +69,11 @@
 
   <hr>
 
-* bool folder_validation(string folderpath);
+* bool DPAR::folder_validation(string folderpath);
 
-  <b>Функция для проверки является ли путь - папкой</b>
+  <b>Функция для проверки является ли путь - папкой
+  
+  ЕСТЬ ВОЗМОЖНОСТЬ ЗАПУСКА КАК С ПЕРЕМЕННОЙ КЛАССА ТАК И С АРГУМЕНТОМ</b> 
   
   Аргументы:
 	
