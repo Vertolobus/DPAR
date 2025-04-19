@@ -11,7 +11,7 @@
 
 std::string DPAR::Fileread(std::string filepath) {
 	
-	if (file_validation(filepath)) { //func argument
+	if (filepath != "-" && !folder_validation(filepath)) { //func argument
 
 		//------------------
 		std::ifstream readfile(filepath, std::ios::in);
@@ -37,7 +37,7 @@ std::string DPAR::Fileread(std::string filepath) {
 		return text;
 		//------------------
 	}
-	else if (filepath == "-" && file_validation(path)) { //constructor argument
+	else if (path != "-" && !folder_validation(path)) { //constructor argument
 
 
 		//------------------
@@ -74,7 +74,7 @@ std::string DPAR::Fileread(std::string filepath) {
 
 void DPAR::Filewrite(std::string raw_text, std::string filepath) {
 
-	if (!folder_validation(filepath)) { //func argument
+	if (filepath != "-" && !folder_validation(filepath)) { //func argument
 
 		std::ofstream writefile(filepath, std::ios::out);
 		if (!writefile.is_open()) {
@@ -89,7 +89,7 @@ void DPAR::Filewrite(std::string raw_text, std::string filepath) {
 
 		writefile.close();
 	}
-	else if (filepath == "-" && !folder_validation(path)) { //constructor argument
+	else if (path != "-" && !folder_validation(path)) { //constructor argument
 
 		std::ofstream writefile(path, std::ios::out);
 		if (!writefile.is_open()) {

@@ -26,17 +26,61 @@
 
 * Markdown(СКОРО)
 
-* WORD(СКОРО)
-
-* XLS(СКОРО)
-
 * XML(СКОРО)
 
 <hr>
 
 <h3>ДОКУМЕНТАЦИЯ</h3>
 
-<h2> СКОРО </h2>
+<b> Функции:</b>
+
+
+* string Fileread(string filepath = "-");
+
+  <b>Функция  для чтения содержимого файла</b>
+  
+  Аргументы:
+	
+  string filepath - Путь до файла 
+
+  <hr>
+
+* void Filewrite(string raw_text,  string filepath = "-");
+
+  <b>Функция для записи данных в файл</b>
+  
+  Аргументы:
+  string raw_text - Текст который будет записан в файл
+	
+  string filepath - Путь до файла 
+
+  <hr>
+
+* //list<string> Fileanalysis(string filepath = "-"); //future func
+
+  <b>Будущая функция</b>
+
+  <hr>
+
+* bool file_validation(string filepath);
+
+  <b>Функция для проверки существует ли файл</b>
+  
+  Аргументы:
+	
+  string filepath - Путь до файла 
+
+  <hr>
+
+* bool folder_validation(string folderpath);
+
+  <b>Функция для проверки является ли путь - папкой</b>
+  
+  Аргументы:
+	
+  string filepath - Путь до файла 
+
+ <hr>
 
 <hr>
 
@@ -44,4 +88,4 @@
 - [Source](SRC/)
     - [DPAR.cpp](SRC/.DPAR.cpp) 
     - [DPAR.hpp](SRC/.DPAR.hpp) 
-    - [JSON.cpp](SRC/JSON.cpp)
+    - [language_manager.cpp](SRC/.language_manager.cpp)

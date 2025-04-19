@@ -29,7 +29,7 @@ class DPAR {
 public:
     std::string Fileread(std::string filepath = "-");
     void Filewrite(std::string raw_text,  std::string filepath = "-");
-    //std::vector<std::string> Fileanalys(std::string filepath = "-"); //future func
+    //std::list<std::string> Fileanalys(std::string filepath = "-"); //future func
 
     bool file_validation(std::string filepath);
     bool folder_validation(std::string folderpath);

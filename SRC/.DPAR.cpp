@@ -8,7 +8,6 @@
 #include <string>
 
 #include ".DPAR.hpp"
-
 //----------------------------------
 bool DPAR::file_validation(std::string filepath) {
 	if (std::filesystem::is_directory(filepath)) {
