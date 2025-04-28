@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Другие файлы">
+      <UniqueIdentifier>{57f4f7e6-5c5e-4870-a2eb-ce1128c7b777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SRC">
+      <UniqueIdentifier>{92faacde-fbab-4247-84f3-db91580d82ae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SRC\DPAR.cpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include="SRC\DPAR_S.cpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClCompile>
+    <ClCompile Include=".TEST_launch.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore">
+      <Filter>Другие файлы</Filter>
+    </None>
+    <None Include="README.MD">
+      <Filter>Другие файлы</Filter>
+    </None>
+    <None Include=".gitattributes">
+      <Filter>Другие файлы</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SRC\DPAR.hpp">
+      <Filter>Исходные файлы\SRC</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt">
+      <Filter>Другие файлы</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
