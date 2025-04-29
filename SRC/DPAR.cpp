@@ -24,7 +24,6 @@ bool DPAR::file_validation(std::string filepath) {
 		}
 	}
 	else { //funcion argument
-
 		if (std::filesystem::is_directory(filepath)) {
 			return false;
 		}
@@ -50,7 +49,6 @@ bool DPAR::folder_validation(std::string folderpath) {
 		}
 	}
 	else {
-
 		if (!std::filesystem::is_directory(folderpath)) { //funcion argument
 			return false;
 		}
@@ -74,23 +72,26 @@ std::vector<std::filesystem::path> DPAR::folderfiles_iterator(std::string folder
 
 	if (folderpath == "-") { //constructor argument
 		if (!folder_validation(path)) {
+			int cutnumber = 0;
 
 			for (int cycle = path.length() - 1; cycle >= 0; cycle--) {
 				if (path[cycle] == '\\' || path[cycle] == '/') {
-					path = path.substr(0, cycle);
+
+					cutnumber = cycle;
+					break;
 				}
 			}
 
-			for (auto const& content_iterator : std::filesystem::directory_iterator(path)) {
+			for (auto const& content_iterator : std::filesystem::directory_iterator(path.substr(0, cutnumber))) {
 				filespath.push_back(content_iterator.path());
 
 			}
 
 		}
 		else {
-
 			for (auto const& content_iterator : std::filesystem::directory_iterator(path)) {
 				filespath.push_back(content_iterator.path());
+
 			}
 		}
 
@@ -106,17 +107,11 @@ std::vector<std::filesystem::path> DPAR::folderfiles_iterator(std::string folder
 				}
 			}
 
-			for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
-				filespath.push_back(content_iterator.path());
-
-			}
-
 		}
-		else { 
+		
+		for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
+			filespath.push_back(content_iterator.path());
 
-			for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
-				filespath.push_back(content_iterator.path());
-			}
 		}
 
 		return filespath;
@@ -128,15 +123,6 @@ std::vector<std::filesystem::path> DPAR::folderfiles_iterator(std::string folder
 //----------------------------------
 //Class DPAR was initializated in .DPAR.hpp
 DPAR::DPAR(std::string fullpath) : path(fullpath) {
-
-	//CHECK
-	//------------------
-	if (!DPAR::file_validation(fullpath) && !DPAR::folder_validation(fullpath)) {
-
-		throw std::runtime_error("Path is not exists");
-
-	}
-	//------------------
 	/*
 	std::string path;
 	std::string file_name = "";

@@ -38,28 +38,32 @@ std::vector<std::filesystem::path> DPAR_S::folderfiles_iterator(std::string fold
 	std::vector<std::filesystem::path> filespath;
 
 	if (!folder_validation(folderpath)) {
+		int cutnumber = 0;
 
 		for (int cycle = folderpath.length() - 1; cycle >= 0; cycle--) {
 			if (folderpath[cycle] == '\\' || folderpath[cycle] == '/') {
-				folderpath = folderpath.substr(0, cycle);
+				cutnumber = cycle;
+				break;
 			}
 		}
 
-		for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
+		for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath.substr(0, cutnumber))) {
 			filespath.push_back(content_iterator.path());
 
 		}
 
+		return filespath;
+
 	}
-	else { //funcion argument
+	else {
 
 		for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
 			filespath.push_back(content_iterator.path());
 		}
+
+		return filespath;
+
 	}
-
-	return filespath;
-
 
 }
 //----------------------------------
