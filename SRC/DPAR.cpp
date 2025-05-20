@@ -8,22 +8,9 @@
 #include <string>
 
 #include "DPAR.hpp"
-//----------------------------------
-bool DPAR::file_validation(std::string filepath) {
-	if (filepath == "-") {  //constructor argument
-		if (std::filesystem::is_directory(path)) {
-			return false;
-		}
-		else if (!std::filesystem::exists(path)) {
-			return false;
-		}
-		else {
-
-			return true;
-
-		}
-	}
-	else { //funcion argument
+namespace DPAR {
+	//----------------------------------
+	bool file_validation(std::string filepath) {
 		if (std::filesystem::is_directory(filepath)) {
 			return false;
 		}
@@ -35,216 +22,115 @@ bool DPAR::file_validation(std::string filepath) {
 			return true;
 
 		}
-
 	}
-}
-//----------------------------------
-bool DPAR::folder_validation(std::string folderpath) {
-	if (folderpath == "-") {
-		if (!std::filesystem::is_directory(path)) { //constructor argument
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-	else {
+	//----------------------------------
+	bool folder_validation(std::string folderpath) {
 		if (!std::filesystem::is_directory(folderpath)) { //funcion argument
 			return false;
 		}
 		else {
 			return true;
 		}
-
 	}
-}
-//----------------------------------
+	//----------------------------------
 
-//Iterator files from folder
-std::vector<std::filesystem::path> DPAR::folderfiles_iterator(std::string folderpath) {
-	/*
-	/*
-	std::vector<std::filesystem::path> filespath;
+	//Iterator files from folder
+	std::vector<std::filesystem::path> folderfiles_iterator(std::string folderpath) {
+		std::vector<std::filesystem::path> filespath;
 
-	initialized in DPAR.hpp
-	*/
+		if (folder_validation(folderpath)) {
 
-
-	if (folderpath == "-") { //constructor argument
-		if (!folder_validation(path)) {
-			int cutnumber = 0;
-
-			for (int cycle = path.length() - 1; cycle >= 0; cycle--) {
-				if (path[cycle] == '\\' || path[cycle] == '/') {
-
-					cutnumber = cycle;
-					break;
-				}
+			if (folderpath[folderpath.size() - 1] != '\\') {
+				folderpath.push_back('\\');
 			}
 
-			for (auto const& content_iterator : std::filesystem::directory_iterator(path.substr(0, cutnumber))) {
+			for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
+
 				filespath.push_back(content_iterator.path());
 
 			}
 
+			return filespath;
+
 		}
 		else {
-			for (auto const& content_iterator : std::filesystem::directory_iterator(path)) {
-				filespath.push_back(content_iterator.path());
 
-			}
-		}
+			throw std::runtime_error("Unknown ERROR!");
 
-		return filespath;
-
-	}
-	else { //funcion argument
-		if (!folder_validation(folderpath)) {
-
-			for (int cycle = folderpath.length() - 1; cycle >= 0; cycle--) {
-				if (folderpath[cycle] == '\\' || folderpath[cycle] == '/') {
-					folderpath = folderpath.substr(0, cycle);
-				}
-			}
-
-		}
-		
-		for (auto const& content_iterator : std::filesystem::directory_iterator(folderpath)) {
-			filespath.push_back(content_iterator.path());
-
-		}
-
-		return filespath;
-
-	}
-}
-//----------------------------------
-
-//----------------------------------
-//Class DPAR was initializated in .DPAR.hpp
-DPAR::DPAR(std::string fullpath) : path(fullpath) {
-	/*
-	std::string path;
-	std::string file_name = "";
-	std::string extension = "";
-
-	initialized in DPAR.hpp
-	*/
-	if (DPAR::file_validation(fullpath)) { //if file exists
-
-		//step 1.1 : extension detecting
-		//------------------
-		for (int cycle = fullpath.length(); cycle >= 0; cycle--) {
-
-			if (fullpath[cycle] == '.') {
-				cycle++;
-				extension = fullpath.substr(cycle, fullpath.length());
-				break;
-
-			}
-
-			if (fullpath[cycle] == '\\' || fullpath[cycle] == '/') {
-
-				extension = "";
-
-			}
-
-		}
-
-		//step 1.2 : file name detecting
-		//------------------
-
-		for (int cycle = fullpath.length(); cycle >= 0; cycle--) {
-
-			//File name searching...
-
-			if (fullpath[cycle] == '\\' || fullpath[cycle] == '/') {
-				cycle++;
-				file_name = fullpath.substr(cycle, fullpath.length());
-				break;
-
-			}
-			else if (cycle == 0 && fullpath[cycle] == '.') {
-
-				file_name = "";
-
-			}
 		}
 
 	}
-}
-//----------------------------------
+	//----------------------------------
+	//File operation func
 
-//----------------------------------
-//File operation func
+	//File reader
+	std::string Fileread(std::string folderpath) {
 
-//File reader
-std::string DPAR::Fileread() {
-
-	if (path != "-" && DPAR::file_validation()) { //constructor argument
+		if (folderpath != "-" && DPAR::file_validation( folderpath )) { //constructor argument
 
 
-		//------------------
-		std::ifstream readfile(path, std::ios::in);
-		if (!readfile.is_open()) {
+			//------------------
+			std::ifstream readfile(folderpath, std::ios::in);
+			if (!readfile.is_open()) {
 
-			throw std::runtime_error("File open ERROR");
-			return std::string();
+				throw std::runtime_error("File open ERROR");
+				return std::string();
 
-		}
+			}
 
-		std::string text = "";
-		std::string line = "";
+			std::string text = "";
+			std::string line = "";
 
-		while (std::getline(readfile, line)) {
+			while (std::getline(readfile, line)) {
 
-			text += line + "\n";
+				text += line + "\n";
 
-		}
+			}
 
 
-		readfile.close();
+			readfile.close();
 
-		return text;
-		//------------------
-	}
-	else {
-
-		throw std::runtime_error("Unknown ERROR!");
-
-	}
-
-}
-//----------------------------------
-
-//File writer
-void DPAR::Filewrite(std::string raw_text, bool clear) {
-
-	if (path != "-" && DPAR::file_validation()) { //constructor argument
-		std::ofstream writefile;
-		if (clear) {
-			writefile.open(path, std::ios::out | std::ios::trunc); 
+			return text;
+			//------------------
 		}
 		else {
-			writefile.open(path, std::ios::out | std::ios::app);
-		}
-		if (!writefile.is_open()) {
 
-			throw std::runtime_error("File open ERROR");
-			return;
+			throw std::runtime_error("Unknown ERROR!");
 
 		}
 
-		writefile  << raw_text + "\n";
-
-
-		writefile.close();
-
 	}
-	else {
+	//----------------------------------
 
-		throw std::runtime_error("Unknown error");
+	//File writer
+	void Filewrite(std::string filepath, std::string raw_text, bool clear) {
 
+		if (filepath != "-" && DPAR::file_validation(filepath)) { //constructor argument
+			std::ofstream writefile;
+			if (clear) {
+				writefile.open(filepath, std::ios::out | std::ios::trunc);
+			}
+			else {
+				writefile.open(filepath, std::ios::out | std::ios::app);
+			}
+			if (!writefile.is_open()) {
+
+				throw std::runtime_error("File open ERROR");
+				return;
+
+			}
+
+			writefile << raw_text + "\n";
+
+
+			writefile.close();
+
+		}
+		else {
+
+			throw std::runtime_error("Unknown error");
+
+		}
 	}
+	//----------------------------------
 }
-//----------------------------------

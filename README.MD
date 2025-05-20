@@ -18,79 +18,11 @@
 <h2>ОПИСАНИЕ</h2>
 
 <h3>ДОКУМЕНТАЦИЯ</h3>
-<b>Кратко о классах</b>
+<b>Кратко о функциях</b>
 
-Класс DPAR - Стандартный класс в котором необходимо лишь раз указать путь до файла при создании класса-объекта 
-
-<B>Примечание: Некоторые функции также поддерживают указание путя, но если нечего не указывать то он подставит значения указанные при создание класса-объекта</B>
-
-<hr>
-
-Класс DPAR_S - Класс создан на основе DPAR но с небольшим отличием а именно:
-* Можно сразу использовать функции класса без необходимости создания класса-объекта
-
-
-<hr>
 <b> DPAR Функции:</b>
 
-* string DPAR::Fileread();
-
-  <b>Функция  для чтения содержимого файла</b>
-
-  <hr>
-
-* void DPAR::Filewrite(string raw_text, bool clear);
-
-  <b>Функция для записи данных в файл</b>
-  
-  Аргументы:
-
-  string raw_text - Текст который будет записан в файл
- 
-  bool clear - Если включено то содержимое файла будет очищено
-
-  <hr>
-
-* bool DPAR::file_validation(string filepath = "-");
-
-  <b>Функция для проверки существует ли файл 
-
-  ЕСТЬ ВОЗМОЖНОСТЬ ЗАПУСКА КАК С ПЕРЕМЕННОЙ КЛАССА ТАК И С АРГУМЕНТОМ</b>
-  
-  Аргументы:
-	
-  string filepath - Путь до файла 
-
-  <hr>
-
-* bool DPAR::folder_validation(string folderpath = "-");
-
-  <b>Функция для проверки существует ли папка
-  
-  ЕСТЬ ВОЗМОЖНОСТЬ ЗАПУСКА КАК С ПЕРЕМЕННОЙ КЛАССА ТАК И С АРГУМЕНТОМ</b> 
-  
-  Аргументы:
-	
-  string folderpath - Путь до файла 
-
-  <hr>
-
-* vector<filsystem_path> folderfiles_iterator(string folderpath = "-");
-
-  <b>Функция для возвращения вектора со всеми объектами в папке
-  
-  ЕСТЬ ВОЗМОЖНОСТЬ ЗАПУСКА КАК С ПЕРЕМЕННОЙ КЛАССА ТАК И С АРГУМЕНТОМ</b> 
-  
-  Аргументы:
-	
-  string folderpath - Путь до папки 
-
- <hr>
- <hr>
-
-<b> DPAR_S Функции:</b>
-
-* string DPAR_S::Fileread(string filepath);
+* string DPAR::Fileread(string filepath);
 
   <b>Функция  для чтения содержимого файла</b>
 
@@ -101,7 +33,7 @@
 
   <hr>
 
-* void DPAR_S::Filewrite(std::string filepath, std::string raw_text, bool clear = false);
+* void DPAR::Filewrite(std::string filepath, std::string raw_text, bool clear = false);
 
   <b>Функция для записи данных в файл</b>
   
@@ -116,7 +48,7 @@
 
   <hr>
 
-* bool DPAR_S::file_validation(string filepath);
+* bool DPAR::file_validation(string filepath);
 
   <b>Функция для проверки существует ли файл 
 
@@ -128,7 +60,7 @@
 
   <hr>
 
-* bool DPAR_S::folder_validation(string folderpath);
+* bool DPAR::folder_validation(string folderpath);
 
   <b>Функция для проверки существует ли папка
   
@@ -146,6 +78,8 @@
   
   Аргументы:
 	
-  string folderpath - Путь до папки 
+  string folderpath - Путь до папки
+
+  bool fullpath - Если активно то выводит полный путь к файлу в противном случае выводится лишь название файла
 
 <hr>
